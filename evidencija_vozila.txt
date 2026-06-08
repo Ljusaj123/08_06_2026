@@ -1,0 +1,2 @@
+Automobil;ST1212AS;audi;2003;3;
+Motocikl;ZG1212RT;bmw;2013;sportski;
