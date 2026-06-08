@@ -1,4 +1,6 @@
 package SustavZaEvidencijuVozila;
+
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -60,20 +62,12 @@ public class Evidencija {
         }
     }
 
-    public static void spremiPodatkeUDatoteku(String putanjaDatoteke, ArrayList<Vozilo> vozila) {
-
-        try (BufferedWriter writer = Files.newBufferedWriter(Path.of(putanjaDatoteke))) {
-
+    public static void spremiPodatkeUDatoteku(String putanjaDatoteke, ArrayList<Vozilo> vozila) throws IOException {
             for (Vozilo vozilo : vozila) {
-                writer.write(vozilo.prikaziPodatke());
-                writer.newLine();
+                Files.writeString(Path.of(putanjaDatoteke), vozilo.prikaziPodatke());
             }
 
             System.out.println("Podaci uspješno spremljeni.");
-
-        } catch (IOException e) {
-            System.out.println("Greška pri spremanju: " + e.getMessage());
-        }
     }
 
     public static void ucitajPodatkeIzDatoteke(String putanjaDatoteke, ArrayList<Vozilo> vozila) {
@@ -105,7 +99,7 @@ public class Evidencija {
         }
     }
 
-    public static Vozilo unosVozila(Scanner scanner)  throws NeispravniPodaciException{
+    public static Vozilo unosVozila(Scanner scanner) throws NeispravniPodaciException {
         System.out.println("Tip vozila:\n1 - Automobil\n2 - Motocikl");
         int tip = scanner.nextInt();
         scanner.nextLine();
