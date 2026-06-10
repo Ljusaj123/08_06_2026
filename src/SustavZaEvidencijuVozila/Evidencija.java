@@ -46,7 +46,7 @@ public class Evidencija {
                             break;
                         }
                         for (Vozilo vozilo : vozila) {
-                            System.out.println(vozilo.prikaziPodatke());
+                            System.out.println(vozilo);
                         }
                         break;
                     case 5:
@@ -63,11 +63,11 @@ public class Evidencija {
     }
 
     public static void spremiPodatkeUDatoteku(String putanjaDatoteke, ArrayList<Vozilo> vozila) throws IOException {
-            for (Vozilo vozilo : vozila) {
-                Files.writeString(Path.of(putanjaDatoteke), vozilo.prikaziPodatke());
-            }
+        for (Vozilo vozilo : vozila) {
+            Files.writeString(Path.of(putanjaDatoteke), vozilo.prikaziPodatke());
+        }
 
-            System.out.println("Podaci uspješno spremljeni.");
+        System.out.println("Podaci uspješno spremljeni.");
     }
 
     public static void ucitajPodatkeIzDatoteke(String putanjaDatoteke, ArrayList<Vozilo> vozila) {
@@ -82,7 +82,7 @@ public class Evidencija {
             for (String red : Files.readAllLines(path)) {
 
                 String[] podaci = red.split(";");
-                switch (podaci[0].toLowerCase()){
+                switch (podaci[0].toLowerCase()) {
                     case "automobil":
                         vozila.add(new Automobil(podaci[1], podaci[2], Integer.parseInt(podaci[3]), Integer.parseInt(podaci[4])));
                         break;

@@ -1,10 +1,12 @@
 package SustavZaEvidencijuVozila;
 
+import java.time.LocalDate;
+
 public class Vozilo{
     protected String registarskiBroj;
     protected String marka;
     protected int godinaProizvodnje;
-    private int trenutnaGodina = 2026;
+    private int trenutnaGodina = LocalDate.now().getYear();
 
     public Vozilo(String registarskiBroj, String marka, int godinaProizvodnje) throws NeispravniPodaciException{
         //regex za provjeru da li su tablice u formatu za hrvatska vozila
@@ -31,5 +33,10 @@ public class Vozilo{
 
     public String prikaziPodatke(){
         return registarskiBroj + ";" + marka + ";" + godinaProizvodnje + ";";
+    }
+
+    @Override
+    public String toString() {
+        return " registarskih oznaka " + registarskiBroj + " marke " + marka + " s godinom proizvodnje " + godinaProizvodnje;
     }
 }
